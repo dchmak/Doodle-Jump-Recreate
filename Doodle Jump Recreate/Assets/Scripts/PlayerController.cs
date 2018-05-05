@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(collision.gameObject.tag);
 
         if (collision.gameObject.tag == "Platform") {
+            rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * bounceForce);
         }
     }
