@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 10
-  bounceForce: 700
+  bounceForce: 600
 --- !u!212 &212261309506572562
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -19,26 +19,32 @@ public class Pooler : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
+
+        initialize();
     }
     #endregion
 
-    void Start () {
+    void initialize () {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
+            GameObject objParent = new GameObject();
+            objParent.name = pool.tag + " Set";
+
             for (int i = 0; i < pool.size; i++) {
                 GameObject obj = Instantiate(pool.prefab);
+                obj.transform.parent = objParent.transform;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
 
             poolDictionary.Add(pool.tag, objectPool);
         }
-	}
+    }
 
-    public GameObject spawn (string tag, Vector2 pos, Quaternion rota) {
+    public GameObject spawn (string tag, Vector2 pos) {
         if (!poolDictionary.ContainsKey(tag)) {
             Debug.LogWarning("Tag " + tag + "does not exist in the pool.");
             return null;
@@ -47,7 +53,7 @@ public class Pooler : MonoBehaviour {
         GameObject obj = poolDictionary[tag].Dequeue();
 
         obj.transform.position = pos;
-        obj.transform.rotation = rota;
+        obj.transform.rotation = Quaternion.identity;
         obj.SetActive(true);
 
         poolDictionary[tag].Enqueue(obj);

@@ -300,6 +300,7 @@ MonoBehaviour:
     type: 2}
   platformPrefab: {fileID: 1764895765978138, guid: 4de0e4b7f98ae104db0aaa0679421961,
     type: 2}
+  visiblePlatform: 10
 --- !u!4 &1676031528
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ public class BackgroundFullScreen : MonoBehaviour {
         float width = sr.sprite.bounds.size.x;
         float height = sr.sprite.bounds.size.y;
 
-
         float worldScreenHeight = Camera.main.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
