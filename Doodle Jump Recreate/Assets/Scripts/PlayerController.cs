@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
             float platformPosY = collision.transform.position.y;
 
             if (playerPosY >= platformPosY) {
-                rb.AddForce(Vector2.up * bounceForce);
+                rb.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
             }
         }
     }

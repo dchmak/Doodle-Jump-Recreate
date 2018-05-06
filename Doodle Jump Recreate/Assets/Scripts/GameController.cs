@@ -8,9 +8,8 @@ public class GameController : MonoBehaviour {
     public int offset;
     public GameObject playerPrefab;
     public GameObject platformPrefab;
-    public int visiblePlatform;
 
-    int currentVisiblePlatform;
+    float currentPlatformY;
 
     Pooler pooler;
 
@@ -18,27 +17,35 @@ public class GameController : MonoBehaviour {
         pooler = Pooler.Instance;
 
         spawnPlayer();
+	}
 
+    void Update() {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         float worldScreenHeight = Camera.main.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+        float x = Random.Range(-worldScreenWidth / 2, worldScreenWidth / 2);
+        float y = Mathf.Pow(player.GetComponent<PlayerController>().bounceForce, 2) /
+            (-2 * Physics2D.gravity.y) - 1;
+        y = Random.Range(y - 2, y);
 
-        for (int i = currentVisiblePlatform; i < visiblePlatform; i++) {
-            spawnPlatform(new Vector2(Random.Range(-worldScreenWidth / 2, worldScreenWidth / 2),
-                Random.Range(-worldScreenHeight / 2, worldScreenHeight)));
+        float screenTop = GameObject.FindGameObjectWithTag("MainCamera").transform.position.y + 
+            worldScreenHeight / 2;
+
+        if (currentPlatformY + y < screenTop) {
+            pooler.spawn("Platform", new Vector2(x, currentPlatformY + y));
+            currentPlatformY += y;
         }
-	}
+    }
 
     void spawnPlayer() {
         Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
         spawnPlatform(spawnPos - new Vector2(0, offset));
 
-        currentVisiblePlatform = 1;
+        currentPlatformY = spawnPos.y - offset;
     }
 
-    void spawnPlatform(Vector2 pos) {
-        pooler.spawn("Platform", pos);            
-
-        currentVisiblePlatform++;
+    public void spawnPlatform(Vector2 pos) {
+        pooler.spawn("Platform", pos);
     }
 }
