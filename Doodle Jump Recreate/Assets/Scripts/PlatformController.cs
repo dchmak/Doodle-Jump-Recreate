@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour {
 
-    void OnBecameInvisible() {
-        //Debug.Log("Out of bound!");
-        gameObject.SetActive(false);
+    void Update() {
+        //Debug.Log("Out of bound);
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        float height = Camera.main.orthographicSize;
+
+        if (transform.position.y < cam.transform.position.y - height) { 
+            gameObject.SetActive(false);
+        }
     }
 }

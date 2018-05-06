@@ -1,0 +1,51 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 520 (ID=0x1916)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   23.20.16.4849
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.038 seconds
+Platform assembly: C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Daniel\Documents\GitHub\Doodle Jump\Doodle-Jump-Recreate\Doodle Jump Recreate\Doodle Jump Recreate_Data\Managed\System.dll (this message is harmless)
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initialized touch support.
+UnloadTime: 1.702718 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.477537 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 617.
+Total: 0.410074 ms (FindLiveObjects: 0.058864 ms CreateObjectMapping: 0.015802 ms MarkObjects: 0.319605 ms  DeleteObjects: 0.015012 ms)
+
+Gameover!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.369778 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 331.
+Total: 0.239012 ms (FindLiveObjects: 0.019358 ms CreateObjectMapping: 0.014617 ms MarkObjects: 0.192790 ms  DeleteObjects: 0.011851 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.372938 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 332.
+Total: 0.250864 ms (FindLiveObjects: 0.029234 ms CreateObjectMapping: 0.018567 ms MarkObjects: 0.197926 ms  DeleteObjects: 0.004345 ms)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 206c -> priority: 1 

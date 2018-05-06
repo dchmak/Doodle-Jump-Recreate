@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -13,8 +14,9 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         transform.Translate(Input.GetAxis("Horizontal") * horizontalSpeed * Time.deltaTime, 0, 0);
 
-        float worldScreenWidth = Camera.main.orthographicSize * 2f 
-            / Screen.height * Screen.width;
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        float height = Camera.main.orthographicSize;
+        float worldScreenWidth = height * 2f / Screen.height * Screen.width;
 
         if (transform.position.x < -worldScreenWidth / 2) {
             transform.Translate(worldScreenWidth, 0, 0);
@@ -22,6 +24,17 @@ public class PlayerController : MonoBehaviour {
 
         if (transform.position.x > worldScreenWidth / 2) {
             transform.Translate(-worldScreenWidth, 0, 0);
+        }
+
+        if (transform.position.y < cam.transform.position.y - height) {
+            // gameover
+            Debug.Log("Gameover!");
+            AudioController audioCtrl = FindObjectOfType<AudioController>();
+            audioCtrl.stop();
+            audioCtrl.play("PlayerDeath");
+            Destroy(gameObject);
+
+            SceneManager.LoadScene("Gameover");
         }
     }
 
