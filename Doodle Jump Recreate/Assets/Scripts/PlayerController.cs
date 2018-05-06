@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public int bounceForce;
 
     Rigidbody2D rb;
+    SpriteRenderer sr;
 
     void Update() {
         transform.Translate(Input.GetAxis("Horizontal") * horizontalSpeed * Time.deltaTime, 0, 0);
@@ -30,12 +31,15 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D (Collision2D collision) {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (sr == null) sr = GetComponent <SpriteRenderer>();
 
         //Debug.Log(collision.gameObject.tag);
 
         if (collision.gameObject.tag == "Platform") {
-            if (transform.position.y > collision.transform.position.y) {
-                rb.velocity = Vector2.zero;
+            float playerPosY = transform.position.y - sr.bounds.size.y / 2;
+            float platformPosY = collision.transform.position.y;
+
+            if (playerPosY >= platformPosY) {
                 rb.AddForce(Vector2.up * bounceForce);
             }
         }
