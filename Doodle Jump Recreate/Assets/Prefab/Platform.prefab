@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4025573455644284}
   - component: {fileID: 212832966550032152}
-  - component: {fileID: 70814644945883008}
+  - component: {fileID: 68382216831282172}
   - component: {fileID: 251632079384561490}
   - component: {fileID: 114550019032350074}
   m_Layer: 0
@@ -43,8 +43,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &70814644945883008
-CapsuleCollider2D:
+--- !u!68 &68382216831282172
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,9 +54,10 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 1
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3, y: 0.5}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0.25}
+  m_Points:
+  - {x: -1.1997973, y: 0}
+  - {x: 1.2193757, y: 0}
 --- !u!114 &114550019032350074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752c4dd41d223c9469f50eace66853cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounceForce: 12
 --- !u!212 &212832966550032152
 SpriteRenderer:
   m_ObjectHideFlags: 1

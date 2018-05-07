@@ -29,6 +29,9 @@ public class GameController : MonoBehaviour {
     public Text score;
     public GameObject pauseScreen;
     public GameObject instructionScreen;
+    public float minSpawnGap;
+    public float maxSpawnGap;
+
 
     public static float maxDistanceTravelled;
     public static bool isPaused;
@@ -69,13 +72,12 @@ public class GameController : MonoBehaviour {
 
             float minX = -worldScreenWidth / 2 + platformWidth / 2;
             float maxX = worldScreenWidth / 2 - platformWidth / 2;
-            float y = Mathf.Pow(player.GetComponent<PlayerController>().bounceForce, 2) /
-                (-2 * Physics2D.gravity.y * player.GetComponent<Rigidbody2D>().gravityScale) - 1;
+            float y = Random.Range(minSpawnGap, maxSpawnGap);
             //y = Random.Range(y - 2, y);
 
             if (currentPlatformY + y < top) {
 
-                Collider2D[] colliders;
+                //Collider2D[] colliders;
                 float spawnX, spawnY;
                 
                 spawnX = Random.Range(minX, maxX);
@@ -85,6 +87,7 @@ public class GameController : MonoBehaviour {
                 
                 // broken platform
                 if (Random.value < brokenPlatformRate) {
+                    /*
                     do {
                         spawnX = Random.Range(minX, maxX);
                         spawnY = currentPlatformY + Random.Range(y - 1, y);
@@ -93,16 +96,20 @@ public class GameController : MonoBehaviour {
 
                         colliders = Physics2D.OverlapCapsuleAll(new Vector2(spawnX, spawnY), cap.size, cap.direction, 0);
                     } while (colliders.Length != 0);
-
-                    /*
+                    
                     SpawnBrokenPlatform(new Vector2(Random.Range(minX, maxX),
                         currentPlatformY + Random.Range(spawnY - 1, spawnY + 1)));
-                        */
+                    */
+
+                    spawnX = Random.Range(minX, maxX);
+                    spawnY = currentPlatformY + Random.Range(y - 1, y);
+
                     SpawnBrokenPlatform(new Vector2(spawnX, spawnY));
                 }
 
                 // enemy
                 if (Random.value < enemyRate) {
+                    /*
                     do {
                         spawnX = Random.Range(minX, maxX);
                         spawnY = currentPlatformY + Random.Range(y - 1, y);
@@ -112,10 +119,13 @@ public class GameController : MonoBehaviour {
                         colliders = Physics2D.OverlapCircleAll(new Vector2(spawnX, spawnY), circle.radius, 0);
                     } while (colliders.Length != 0);
 
-                    /*
                     SpawnEnemy(new Vector2(Random.Range(minX, maxX),
                         currentPlatformY + Random.Range(spawnY - 1, spawnY + 1)));
-                        */
+                    */
+
+                    spawnX = Random.Range(minX, maxX);
+                    spawnY = currentPlatformY + Random.Range(y - 1, y);
+
                     SpawnEnemy(new Vector2(spawnX, spawnY));
                 }
 

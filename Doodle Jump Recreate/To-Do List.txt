@@ -1,5 +1,2 @@
-Break platform animation
-Do not slow down when breaking the broken platform
 Add moving platform
 Add items
-Better movement(?)

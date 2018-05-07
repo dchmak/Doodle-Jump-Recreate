@@ -1959,6 +1959,8 @@ MonoBehaviour:
   score: {fileID: 816514718}
   pauseScreen: {fileID: 384330191}
   instructionScreen: {fileID: 960041997}
+  minSpawnGap: 5
+  maxSpawnGap: 7
 --- !u!4 &1676031528
 Transform:
   m_ObjectHideFlags: 0
