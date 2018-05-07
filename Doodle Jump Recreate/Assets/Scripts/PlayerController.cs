@@ -35,13 +35,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (transform.position.y < cam.transform.position.y - height) {
-            // gameover
-            AudioController audioCtrl = FindObjectOfType<AudioController>();
-            audioCtrl.Stop();
-            audioCtrl.Play("PlayerDeath");
-            Destroy(gameObject);
-
-            SceneManager.LoadScene("Gameover");
+            Gameover();
         }
     }
 
@@ -60,6 +54,10 @@ public class PlayerController : MonoBehaviour {
                 collision.gameObject.SetActive(false);
             }
         }
+
+        if (collision.gameObject.tag == "Enemy") {
+            Gameover();
+        }
     }
 
     void FixedUpdate() {
@@ -70,5 +68,14 @@ public class PlayerController : MonoBehaviour {
         } else {
             rb.gravityScale = 1f;
         }
-    }    
+    }  
+    
+    void Gameover() {
+        AudioController audioCtrl = FindObjectOfType<AudioController>();
+        audioCtrl.Stop();
+        audioCtrl.Play("PlayerDeath");
+        //Destroy(gameObject);
+
+        SceneManager.LoadScene("Gameover");
+    }
 }

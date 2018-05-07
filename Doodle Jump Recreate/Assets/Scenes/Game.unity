@@ -1952,6 +1952,10 @@ MonoBehaviour:
     type: 2}
   brokenPlatformPrefab: {fileID: 1507437938448860, guid: 8a103d9f0f356d24eaed49840934e144,
     type: 2}
+  enemyPrefab: {fileID: 1557618706179854, guid: 4c0a5d31fab713e49b77305bc17cdfdd,
+    type: 2}
+  brokenPlatformRate: 0.5
+  enemyRate: 0.3
   score: {fileID: 816514718}
   pauseScreen: {fileID: 384330191}
   instructionScreen: {fileID: 960041997}
@@ -2072,10 +2076,13 @@ MonoBehaviour:
   pools:
   - tag: Platform
     prefab: {fileID: 1764895765978138, guid: 4de0e4b7f98ae104db0aaa0679421961, type: 2}
-    size: 50
+    size: 100
   - tag: Broken Platform
     prefab: {fileID: 1507437938448860, guid: 8a103d9f0f356d24eaed49840934e144, type: 2}
-    size: 30
+    size: 50
+  - tag: Enemy
+    prefab: {fileID: 1557618706179854, guid: 4c0a5d31fab713e49b77305bc17cdfdd, type: 2}
+    size: 50
 --- !u!4 &2133440050
 Transform:
   m_ObjectHideFlags: 0

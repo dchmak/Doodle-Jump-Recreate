@@ -15,6 +15,13 @@ public class GameController : MonoBehaviour {
     public GameObject playerPrefab;
     public GameObject platformPrefab;
     public GameObject brokenPlatformPrefab;
+    public GameObject enemyPrefab;
+
+    [Space]
+
+    [Header("Spawn rate")]
+    [Range(0f, 1f)] public float brokenPlatformRate;
+    [Range(0f, 1f)] public float enemyRate;
 
     [Space]
 
@@ -76,19 +83,40 @@ public class GameController : MonoBehaviour {
 
                 SpawnPlatform(new Vector2(spawnX, spawnY));
                 
-
-                if (Random.value < 0.5f) {
+                // broken platform
+                if (Random.value < brokenPlatformRate) {
                     do {
                         spawnX = Random.Range(minX, maxX);
                         spawnY = currentPlatformY + Random.Range(y - 1, y);
 
-                        CapsuleCollider2D cap = platformPrefab.GetComponent<CapsuleCollider2D>();
+                        CapsuleCollider2D cap = brokenPlatformPrefab.GetComponent<CapsuleCollider2D>();
 
                         colliders = Physics2D.OverlapCapsuleAll(new Vector2(spawnX, spawnY), cap.size, cap.direction, 0);
                     } while (colliders.Length != 0);
 
+                    /*
                     SpawnBrokenPlatform(new Vector2(Random.Range(minX, maxX),
                         currentPlatformY + Random.Range(spawnY - 1, spawnY + 1)));
+                        */
+                    SpawnBrokenPlatform(new Vector2(spawnX, spawnY));
+                }
+
+                // enemy
+                if (Random.value < enemyRate) {
+                    do {
+                        spawnX = Random.Range(minX, maxX);
+                        spawnY = currentPlatformY + Random.Range(y - 1, y);
+
+                        CircleCollider2D circle = enemyPrefab.GetComponent<CircleCollider2D>();
+
+                        colliders = Physics2D.OverlapCircleAll(new Vector2(spawnX, spawnY), circle.radius, 0);
+                    } while (colliders.Length != 0);
+
+                    /*
+                    SpawnEnemy(new Vector2(Random.Range(minX, maxX),
+                        currentPlatformY + Random.Range(spawnY - 1, spawnY + 1)));
+                        */
+                    SpawnEnemy(new Vector2(spawnX, spawnY));
                 }
 
                 currentPlatformY += y;
@@ -112,9 +140,9 @@ public class GameController : MonoBehaviour {
         player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
         SpawnPlatform(spawnPos - new Vector2(0, platformOffset));
-        SpawnBrokenPlatform(spawnPos + new Vector2(0, platformOffset));
+        //SpawnBrokenPlatform(spawnPos + new Vector2(0, platformOffset));
 
-         currentPlatformY = spawnPos.y - platformOffset;
+        currentPlatformY = spawnPos.y - platformOffset;
     }
 
     void ShowInstruction() {
@@ -133,6 +161,10 @@ public class GameController : MonoBehaviour {
 
     public void SpawnBrokenPlatform(Vector2 pos) {
         pooler.spawn("Broken Platform", pos);
+    }
+
+    void SpawnEnemy(Vector2 pos) {
+        pooler.spawn("Enemy", pos);
     }
 
     public void Pause() {
