@@ -1,0 +1,5 @@
+Fix multistage boosting
+Consistent bounce
+Add monster
+Add moving platform
+Add items
