@@ -1626,7 +1626,7 @@ MonoBehaviour:
     size: 50
   - tag: Broken Platform
     prefab: {fileID: 1507437938448860, guid: 8a103d9f0f356d24eaed49840934e144, type: 2}
-    size: 10
+    size: 30
 --- !u!4 &2133440050
 Transform:
   m_ObjectHideFlags: 0
