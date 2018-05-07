@@ -3,3 +3,6 @@ Do not slow down when breaking the broken platform
 Add monster
 Add moving platform
 Add items
+Add instructions
+Add highscore record
+Better movement(?)

@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
     [Header("Others")]
     public Text score;
     public GameObject pauseScreen;
+    public GameObject instructionScreen;
 
     public static float maxDistanceTravelled;
     public static bool isPaused;
@@ -45,7 +46,13 @@ public class GameController : MonoBehaviour {
 
         maxDistanceTravelled = 0f;
 
-        isPaused = false;
+        if (PlayerPrefs.GetInt("Played", 0) == 0) {
+            ShowInstruction();
+        }
+
+        PlayerPrefs.SetInt("Played", PlayerPrefs.GetInt("Played", 0) + 1);
+
+        isPaused = false;        
     }
 
     void Update() {
@@ -105,8 +112,19 @@ public class GameController : MonoBehaviour {
         player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
         SpawnPlatform(spawnPos - new Vector2(0, platformOffset));
+        SpawnBrokenPlatform(spawnPos + new Vector2(0, platformOffset));
 
-        currentPlatformY = spawnPos.y - platformOffset;
+         currentPlatformY = spawnPos.y - platformOffset;
+    }
+
+    void ShowInstruction() {
+        instructionScreen.SetActive(true);
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+
+    public void HideInstruction() {
+        instructionScreen.SetActive(false);
     }
 
     public void SpawnPlatform(Vector2 pos) {

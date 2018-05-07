@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsFunctions : MonoBehaviour {
 
-	public void loadScene(string name) {
+	public void LoadScene(string name) {
         try {
             SceneManager.LoadScene(name);
         } catch (System.Exception e) {
@@ -13,14 +13,18 @@ public class ButtonsFunctions : MonoBehaviour {
         }
     }
 
-    public void quit() {
+    public void Quit() {
         Application.Quit();
     }
 
-    public void playAudio(string name) {
+    public void PlayAudio(string name) {
         AudioController audioCtrl = FindObjectOfType<AudioController>();
         if (!audioCtrl.IsPlaying(name)) {
             audioCtrl.Play(name);
         }
+    }
+
+    public void ResetPlayerPref() {
+        PlayerPrefs.DeleteAll();
     }
 }
