@@ -11,7 +11,6 @@ public class MasterVolumeSliderFunctions : MonoBehaviour {
     void Awake() {
         float val;
         audioMixer.GetFloat("MasterVolume", out val);
-        Debug.Log(val);
         GetComponent<Slider>().value = val;
     }
 

@@ -5,10 +5,20 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
+    [Header("Spawn Positions")]
     public Vector2 spawnPos;
-    public int offset;
+    public int platformOffset;
+
+    [Space]
+
+    [Header("Prefabs")]
     public GameObject playerPrefab;
     public GameObject platformPrefab;
+    public GameObject brokenPlatformPrefab;
+
+    [Space]
+
+    [Header("Others")]
     public Text score;
     public GameObject pauseScreen;
 
@@ -22,7 +32,6 @@ public class GameController : MonoBehaviour {
 
     float worldScreenHeight, worldScreenWidth;
     float platformWidth;
-    float spawnX, spawnY;
 
     void Start () {
         pooler = Pooler.Instance;
@@ -44,15 +53,37 @@ public class GameController : MonoBehaviour {
             float top = GameObject.FindGameObjectWithTag("MainCamera").transform.position.y +
                 worldScreenHeight * 3 / 2;
 
-            spawnX = Random.Range(-worldScreenWidth / 2 + platformWidth / 2,
-                worldScreenWidth / 2 - platformWidth / 2);
-            spawnY = Mathf.Pow(player.GetComponent<PlayerController>().bounceForce, 2) /
+            float minX = -worldScreenWidth / 2 + platformWidth / 2;
+            float maxX = worldScreenWidth / 2 - platformWidth / 2;
+            float y = Mathf.Pow(player.GetComponent<PlayerController>().bounceForce, 2) /
                 (-2 * Physics2D.gravity.y * player.GetComponent<Rigidbody2D>().gravityScale) - 1;
             //y = Random.Range(y - 2, y);
 
-            if (currentPlatformY + spawnY < top) {
-                pooler.spawn("Platform", new Vector2(spawnX, currentPlatformY + spawnY));
-                currentPlatformY += spawnY;
+            if (currentPlatformY + y < top) {
+                /*
+                Collider2D[] colliders;
+                float spawnX, spawnY;
+                do {
+                    spawnX = Random.Range(minX, maxX);
+                    spawnY = currentPlatformY + Random.Range(y - 1, y);
+
+                    CapsuleCollider2D cap = platformPrefab.GetComponent<CapsuleCollider2D>();
+
+                    colliders = Physics2D.OverlapCapsuleAll(new Vector2(spawnX, spawnY), cap.size, cap.direction, 0);
+                } while (colliders.Length != 0);
+                */
+                float spawnX, spawnY;
+                spawnX = Random.Range(minX, maxX);
+                spawnY = currentPlatformY + y;
+
+                SpawnPlatform(new Vector2(spawnX, spawnY));
+
+                if (Random.value < 0.5f) {
+                    SpawnBrokenPlatform(new Vector2(Random.Range(minX, maxX),
+                        currentPlatformY + Random.Range(spawnY - 1, spawnY + 1)));
+                }
+
+                currentPlatformY += y;
             }
         }
 
@@ -72,13 +103,17 @@ public class GameController : MonoBehaviour {
     void SpawnPlayer() {
         player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
-        SpawnPlatform(spawnPos - new Vector2(0, offset));
+        SpawnPlatform(spawnPos - new Vector2(0, platformOffset));
 
-        currentPlatformY = spawnPos.y - offset;
+        currentPlatformY = spawnPos.y - platformOffset;
     }
 
     public void SpawnPlatform(Vector2 pos) {
         pooler.spawn("Platform", pos);
+    }
+
+    public void SpawnBrokenPlatform(Vector2 pos) {
+        pooler.spawn("Broken Platform", pos);
     }
 
     public void Pause() {

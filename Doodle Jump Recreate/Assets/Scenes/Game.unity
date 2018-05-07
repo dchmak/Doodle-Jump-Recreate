@@ -1374,10 +1374,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPos: {x: 0, y: 0}
-  offset: 4
+  platformOffset: 4
   playerPrefab: {fileID: 1909032491503408, guid: 8985f5440ac22b14f840828b871aadf5,
     type: 2}
   platformPrefab: {fileID: 1764895765978138, guid: 4de0e4b7f98ae104db0aaa0679421961,
+    type: 2}
+  brokenPlatformPrefab: {fileID: 1507437938448860, guid: 8a103d9f0f356d24eaed49840934e144,
     type: 2}
   score: {fileID: 816514718}
   pauseScreen: {fileID: 384330191}
@@ -1425,6 +1427,9 @@ MonoBehaviour:
   - tag: Platform
     prefab: {fileID: 1764895765978138, guid: 4de0e4b7f98ae104db0aaa0679421961, type: 2}
     size: 50
+  - tag: Broken Platform
+    prefab: {fileID: 1507437938448860, guid: 8a103d9f0f356d24eaed49840934e144, type: 2}
+    size: 10
 --- !u!4 &2133440050
 Transform:
   m_ObjectHideFlags: 0
