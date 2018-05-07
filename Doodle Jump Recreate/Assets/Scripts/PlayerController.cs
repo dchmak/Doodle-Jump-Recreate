@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 
         if (collision.gameObject.tag == "Broken Platform") {
             if (playerPosY >= platformPosY) {
-                Destroy(collision.gameObject);
+                collision.gameObject.SetActive(false);
             }
         }
     }

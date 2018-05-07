@@ -60,25 +60,26 @@ public class GameController : MonoBehaviour {
             //y = Random.Range(y - 2, y);
 
             if (currentPlatformY + y < top) {
-                /*
+
                 Collider2D[] colliders;
                 float spawnX, spawnY;
-                do {
-                    spawnX = Random.Range(minX, maxX);
-                    spawnY = currentPlatformY + Random.Range(y - 1, y);
-
-                    CapsuleCollider2D cap = platformPrefab.GetComponent<CapsuleCollider2D>();
-
-                    colliders = Physics2D.OverlapCapsuleAll(new Vector2(spawnX, spawnY), cap.size, cap.direction, 0);
-                } while (colliders.Length != 0);
-                */
-                float spawnX, spawnY;
+                
                 spawnX = Random.Range(minX, maxX);
                 spawnY = currentPlatformY + y;
 
                 SpawnPlatform(new Vector2(spawnX, spawnY));
+                
 
                 if (Random.value < 0.5f) {
+                    do {
+                        spawnX = Random.Range(minX, maxX);
+                        spawnY = currentPlatformY + Random.Range(y - 1, y);
+
+                        CapsuleCollider2D cap = platformPrefab.GetComponent<CapsuleCollider2D>();
+
+                        colliders = Physics2D.OverlapCapsuleAll(new Vector2(spawnX, spawnY), cap.size, cap.direction, 0);
+                    } while (colliders.Length != 0);
+
                     SpawnBrokenPlatform(new Vector2(Random.Range(minX, maxX),
                         currentPlatformY + Random.Range(spawnY - 1, spawnY + 1)));
                 }
