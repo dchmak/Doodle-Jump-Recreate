@@ -10,8 +10,10 @@ public class GameController : MonoBehaviour {
     public GameObject playerPrefab;
     public GameObject platformPrefab;
     public Text score;
+    public GameObject pauseScreen;
 
     public static float maxDistanceTravelled;
+    public static bool isPaused;
 
     float currentPlatformY;
 
@@ -30,9 +32,11 @@ public class GameController : MonoBehaviour {
 
         platformWidth = platformPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
 
-        spawnPlayer();
+        SpawnPlayer();
 
         maxDistanceTravelled = 0f;
+
+        isPaused = false;
     }
 
     void Update() {
@@ -55,17 +59,37 @@ public class GameController : MonoBehaviour {
         maxDistanceTravelled = Mathf.Max(maxDistanceTravelled,
             player.transform.position.y);
         score.text = "Score: " + (maxDistanceTravelled * 10).ToString("F0");
+
+        if (Input.GetKeyUp(KeyCode.Escape)) {            
+            if (isPaused) {
+                Unpause();
+            } else {
+                Pause();
+            }
+        }
     }
 
-    void spawnPlayer() {
+    void SpawnPlayer() {
         player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
-        spawnPlatform(spawnPos - new Vector2(0, offset));
+        SpawnPlatform(spawnPos - new Vector2(0, offset));
 
         currentPlatformY = spawnPos.y - offset;
     }
 
-    public void spawnPlatform(Vector2 pos) {
+    public void SpawnPlatform(Vector2 pos) {
         pooler.spawn("Platform", pos);
+    }
+
+    public void Pause() {
+        pauseScreen.SetActive(true);
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+
+    public void Unpause() {
+        pauseScreen.SetActive(false);
+        Time.timeScale = 1;
+        isPaused = false;
     }
 }

@@ -19,8 +19,8 @@ public class ButtonsFunctions : MonoBehaviour {
 
     public void playAudio(string name) {
         AudioController audioCtrl = FindObjectOfType<AudioController>();
-        if (!audioCtrl.isPlaying(name)) {
-            audioCtrl.play(name);
+        if (!audioCtrl.IsPlaying(name)) {
+            audioCtrl.Play(name);
         }
     }
 }

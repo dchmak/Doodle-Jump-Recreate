@@ -50,25 +50,26 @@ public class AudioController : MonoBehaviour {
 	}
 
     void Start () {
-        play("Background");
+        Play("Background");
     }
 	
-	public void play (string name) {
+	public void Play (string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) {
             Debug.LogWarning("Sound " + name + " does not exist.");
             return;
         }
+
         s.source.Play();
     }
 
-    public void stop () {
+    public void Stop () {
         foreach (Sound sound in sounds) {
             sound.source.Stop();
         }
     }
 
-    public bool isPlaying(string name) {
+    public bool IsPlaying(string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) {
             Debug.LogWarning("Sound " + name + " does not exist.");
@@ -76,4 +77,11 @@ public class AudioController : MonoBehaviour {
         }
         return s.source.isPlaying;
     } 
+
+    public AudioSource CurrentlyPlaying() {
+        foreach (Sound sound in sounds) {
+            if (sound.source.isPlaying) return sound.source;
+        }
+        return null;
+    }
 }

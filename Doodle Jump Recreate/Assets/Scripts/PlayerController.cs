@@ -30,16 +30,12 @@ public class PlayerController : MonoBehaviour {
             // gameover
             Debug.Log("Gameover!");
             AudioController audioCtrl = FindObjectOfType<AudioController>();
-            audioCtrl.stop();
-            audioCtrl.play("PlayerDeath");
+            audioCtrl.Stop();
+            audioCtrl.Play("PlayerDeath");
             Destroy(gameObject);
 
             SceneManager.LoadScene("Gameover");
         }
-    }
-
-    void OnBecameInvisible() {
-        //Debug.Log("Out of screen!");
     }
 
     void OnCollisionEnter2D (Collision2D collision) {
